@@ -151,6 +151,13 @@ cache_build() {
 header "Caching build"
 cache_build | output "$LOG_FILE"
 
+run_tests() {
+  run_if_present 'test'
+}
+
+header "Running tests"
+run_tests | output "$LOG_FILE"
+
 summarize_build() {
   cd $BUILD_DIR
   (npm ls --depth=0 | tail -n +2 || true) 2>/dev/null
